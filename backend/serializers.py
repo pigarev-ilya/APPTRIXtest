@@ -11,7 +11,7 @@ from django.core.exceptions import ValidationError as PasswordValidationError
 class RegistrationSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'password', 'first_name', 'last_name', 'avatar']
+        fields = ['email', 'password', 'first_name', 'last_name', 'avatar', 'gender']
 
     extra_kwargs = {"password": {"write_only": True}}
 
@@ -25,6 +25,7 @@ class RegistrationSerializer(ModelSerializer):
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             avatar=validated_data['avatar'],
+            gender=validated_data['gender'],
         )
         user.set_password(validated_data['password'])
         user.save()
@@ -52,3 +53,11 @@ class CustomAuthTokenSerializer(serializers.Serializer):
 
         data['user'] = user
         return data
+
+
+class ListUserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'avatar', 'gender']
+
+
