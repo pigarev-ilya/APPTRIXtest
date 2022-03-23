@@ -13,6 +13,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(verbose_name='Имя', max_length=100, null=False, blank=False)
     last_name = models.CharField(verbose_name='Фамилия', max_length=100, null=False, blank=False)
     avatar = models.ImageField(upload_to='images/avatar/', null=False, blank=False)
+    user_like = models.ManyToManyField('self', symmetrical=False, related_name='parent', blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

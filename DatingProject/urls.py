@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from backend.views import LoginView, RegisterView
+from backend.views import LoginView, RegisterView, UserLikesView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/clients/create', RegisterView.as_view()),
     path('api/clients/login', LoginView.as_view()),
+    path('api/clients/<int:liked_user_id>/match', UserLikesView.as_view()),
 ]
