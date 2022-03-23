@@ -15,10 +15,10 @@ class RegisterView(APIView):
             data = {}
             serializer = RegistrationSerializer(data=request.data)
             if serializer.is_valid():
-                account = serializer.save()
-                token = Token.objects.get_or_create(user=account)[0].key
+                user = serializer.save()
+                token = Token.objects.get_or_create(user=user)[0].key
                 data["message"] = 'User registered successfully'
-                data["email"] = account.email
+                data["email"] = user.email
                 data["token"] = token
                 return JsonResponse({'Status': True, 'Data': data})
             else:

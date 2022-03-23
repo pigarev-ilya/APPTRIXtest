@@ -3,6 +3,7 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
+from backend.add_watemark import add_watermark
 from backend.models import User
 from django.core.exceptions import ValidationError as PasswordValidationError
 
@@ -27,6 +28,7 @@ class RegistrationSerializer(ModelSerializer):
         )
         user.set_password(validated_data['password'])
         user.save()
+        add_watermark(user.avatar)
         return user
 
 
