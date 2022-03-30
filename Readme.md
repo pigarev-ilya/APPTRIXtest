@@ -1,4 +1,4 @@
-<img src="https://static.tildacdn.com/tild3064-3830-4666-a536-663731356663/newapptrix_white.png" width="400">
+
 
 #  API Приложения знакомств.
 
